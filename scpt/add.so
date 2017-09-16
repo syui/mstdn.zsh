@@ -13,9 +13,11 @@ json_account=$j/accounts.json
 json_account_status=$j/accounts_statuses.json
 json_public=$j/timelines_public.json
 json_home=$j/timelines_home.json
-if [ ! -f $json_user ] && ! cat $json_user | jq keys | grep select_command > /dev/null 2>&1;then
+select_command=`cat $json_user | jq -r .select_command`
+if [ "$select_command" = "null" ];then
 	select_command=peco
 fi
+
 if [ ! -f $json_user ];then
 	. $s/add_app.zsh
 fi
