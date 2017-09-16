@@ -21,3 +21,12 @@ $ mstdn.zsh docs
 # use
 $ mstdn.zsh
 ```
+
+
+docker
+
+```sh
+$ sudo docker pull registry.gitlab.com/syui/mstdn.zsh
+$ sudo docker run -it registry.gitlab.com/syui/mstdn.zsh
+> mstdn.zsh
+```
