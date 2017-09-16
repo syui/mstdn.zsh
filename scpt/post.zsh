@@ -10,7 +10,8 @@ case $2 in
 	;;
 esac
 
-if [ "$select_command" = "peco" ];then
+if [ "$select_command" = "null" ];then
+	select_command=peco
 	api_option=`cat $json_docs|jq -r '.[]|select(.POST)|.[]'|cut -d / -f 4-|$select_command --query statuses`
 else
 	api_option=`cat $json_docs|jq -r '.[]|select(.POST)|.[]'|cut -d / -f 4-|$select_command`
