@@ -7,8 +7,8 @@ if [ ! -f $json_user ];then
 	echo "app name : "
 	read app
 	echo "
-		{\"host\":"$host"},
-		{\"app\":"$app"}
+		{\"host\":\"$host\"},
+		{\"app\":\"$app\"}
 	" >! $json_user
 fi
 
