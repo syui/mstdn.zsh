@@ -1,0 +1,10 @@
+[
+	{
+	"version":"v1",
+	"protocol":"https",
+	"url":"api/v1",
+	"docs":"https://raw.githubusercontent.com/tootsuite/documentation/master/Using-the-API/API.md",
+	"option":[{}
+	]
+	}
+]

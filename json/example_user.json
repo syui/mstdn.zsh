@@ -1,0 +1,5 @@
+{	
+	"host":"mstdn.syui.cf",
+	"app":"test",
+	"select_command":"fzf"
+}
