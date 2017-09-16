@@ -1,0 +1,37 @@
+
+s=$d/scpt
+j=$d/json
+readme=$d/readme.md
+
+json_user=$j/user.json
+json_user_e=$j/example_user.json
+json_client=$j/client.json
+json_token=$j/token.json
+json_api=$j/api.json
+json_docs=$j/docs.json
+json_account=$j/accounts.json
+json_account_status=$j/accounts_statuses.json
+json_public=$j/timelines_public.json
+json_home=$j/timelines_home.json
+if cat $json_user | grep select_command > /dev/null 2>&1;then
+	select_command=peco
+else
+	if  [ -n "`cat $json_user|jq -r .select_command`" ];then
+		select_command=peco
+	else
+		select_command=`cat $json_user|jq -r .select_command`
+	fi
+fi
+if [ ! -f $json_user ];then
+	. $s/add_app.zsh
+fi
+
+if [ ! -f $json_account ];then
+	. $s/account.zsh
+fi
+
+host=`cat $json_user| jq -r .host`
+access_token=`cat $json_token| jq -r .access_token`
+api_url=`cat $json_api| jq -r '.[]|.url'`
+protocol=`cat $json_api| jq -r '.[]|.protocol'`
+url=$protocol://$host/$api_url
