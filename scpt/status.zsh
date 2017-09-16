@@ -1,4 +1,3 @@
-
 if [ -f $json_account ];then
 	user_id=`cat $j/accounts.json | jq .id`
 else

@@ -14,10 +14,9 @@ json_account_status=$j/accounts_statuses.json
 json_public=$j/timelines_public.json
 json_home=$j/timelines_home.json
 select_command=`cat $json_user | jq -r .select_command`
-if [ "$select_command" = "null" ];then
-	export select_command=peco
+if [ "$select_command" = "null" ] || [ -z "$select_command" ];then
+	select_command=peco
 fi
-
 if [ ! -f $json_user ];then
 	. $s/add_app.zsh
 fi
@@ -28,7 +27,6 @@ fi
 
 if [ -f $json_user ];then
 	host=`cat $json_user| jq -r .host`
-	select_command=`cat $json_user|jq -r .select_command` > /dev/null 2>&1
 else
 	echo error $json_user
 	exit
