@@ -40,6 +40,9 @@ case $1 in
 	test|--test)
 		. $s/test.zsh
 	;;
+	usertimeline|user|-u|u)
+		. $s/timeline_user.zsh
+	;;
 	*)
 		echo args
 		echo see $readme
