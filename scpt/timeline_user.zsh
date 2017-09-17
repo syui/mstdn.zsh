@@ -1,6 +1,2 @@
-if [ ! -f $json_account_status ];then
-	. $s/status.zsh
-fi
-
+. $s/status.zsh
 cat $json_account_status | jq '.[]|.content' | $select_command
-
