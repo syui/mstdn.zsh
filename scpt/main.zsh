@@ -37,6 +37,9 @@ case $1 in
 	post|-p|p)
 		. $s/post.zsh
 	;;
+	notify|-n|n)
+		. $s/notification.zsh
+	;;
 	test|--test)
 		. $s/test.zsh
 	;;
