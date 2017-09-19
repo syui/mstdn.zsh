@@ -1,6 +1,4 @@
-if [ ! -f $json_account_status ];then
-	. $s/status.zsh
-fi
+. $s/status.zsh
 api_option=`cat $json_docs|jq -r '.[]|select(.DELETE)|.[]'|cut -d / -f 4`
 if [ `echo "$api_option"|wc -l` -ne 1 ];then
 	api_option=`echo "$api_option" | $select_command --query statuses`
