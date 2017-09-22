@@ -1,8 +1,8 @@
 if [ -f $json_account ];then
-	user_id=`cat $j/accounts.json | jq .id`
+	user_id=`cat $j/accounts.json | jq -r .id`
 else
 	. $s/account.zsh
-	user_id=`cat $j/accounts.json | jq .id`
+	user_id=`cat $j/accounts.json | jq -r .id`
 fi
 
 url="$url/accounts/$user_id/statuses?limit=40"
