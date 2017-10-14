@@ -46,6 +46,9 @@ case $1 in
 	usertimeline|user|-u|u)
 		. $s/timeline_user.zsh
 	;;
+	gitlab|g|-g)
+		. $s/gitlab.zsh
+	;;
 	*)
 		echo args
 		echo see $readme
