@@ -6,3 +6,4 @@ json/timelines_public.json
 scpt/test.zsh
 json/accounts.json
 json/accounts_statuses.json
+json/notifications.json
