@@ -14,6 +14,8 @@ json_account_status=$j/accounts_statuses.json
 json_public=$j/timelines_public.json
 json_home=$j/timelines_home.json
 json_notification=$j/notifications.json
+json_gitlab=$j/gitlab_avatar.json
+
 select_command=`cat $json_user | jq -r .select_command`
 if [ "$select_command" = "null" ] || [ -z "$select_command" ];then
 	select_command=peco
