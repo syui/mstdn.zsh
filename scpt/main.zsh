@@ -46,8 +46,11 @@ case $1 in
 	usertimeline|user|-u|u)
 		. $s/timeline_user.zsh
 	;;
-	gitlab|g|-g)
-		. $s/gitlab.zsh
+	get_avatar|g|-g)
+		. $s/get_avatar.zsh
+	;;
+	get_avatar_timeline)
+		. $s/get_avatar_timeline.zsh
 	;;
 	*)
 		echo args
