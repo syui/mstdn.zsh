@@ -40,7 +40,7 @@ do
 	avatar=`echo $gjson|jq -r ".[$i]|.avatar"`
 	acct=`echo $gjson|jq -r ".[$i]|.acct"`
 	url=`echo $gjson|jq -r ".[$i]|.url"|cut -d / -f -3`
-	if ! echo "$gjson"| jq -r ".[]|select(.acct == \"${acct}\")" > /dev/null 2>&1;then
+	if ! echo "$sjson"| jq -r ".[]|select(.acct == \"${acct}\")" > /dev/null 2>&1;then
 		output=`curl -sSL -H "Accept: application/json" "$url/${host_meta}=acct:${acct}"|jq -r '.links|.[]|select(.type == "application/atom+xml")|.href'`
 		img=`curl -sL $output | awk -vRS="</logo>" '/<logo>/{gsub(/.*<logo>|\n+/,"");print;exit}'`
 		if [ $i -eq 0 ] && cat $json_gitlab| head -n 1|grep -v '[' > /dev/null 2>&1;then
