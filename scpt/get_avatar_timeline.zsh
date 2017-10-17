@@ -8,8 +8,8 @@ turl=$protocol://$host/$api_url/timelines/public
 tjson=`curl -sSL $turl -H "Authorization: Bearer $access_token"`
 tbody=`echo "$tjson"|jq -r '.[].account|{avatar,acct,url}'`
 tn=`echo "$tjson"| jq -r length`
-if [ "$gn" != "0" ];then
-	gn=$((${gn} - 1))
+if [ "$tn" != "0" ];then
+	tn=$((${tn} - 1))
 fi
 
 unset acct_tmp
