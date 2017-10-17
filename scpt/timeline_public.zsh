@@ -1,5 +1,5 @@
 
-url=$protocol://$host/$api_url/timelines/public
+url="$protocol://$host/$api_url/timelines/public/?limit=40"
 curl -sSL $url -H "Authorization: Bearer $access_token" >! $j/timelines_public.json
 
 if [ -n "$2" ];then
