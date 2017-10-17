@@ -4,7 +4,15 @@ host_meta=".well-known//webfinger?resource"
 touch $json_avatar
 rm $json_avatar
 
-turl=$protocol://$host/$api_url/timelines/public
+case $2 in
+	public)
+		turl=$protocol://$host/$api_url/timelines/public
+	;;
+	*)
+		turl=$protocol://$host/$api_url/timelines/home
+	;;
+esac
+
 tjson=`curl -sSL $turl -H "Authorization: Bearer $access_token"`
 tbody=`echo "$tjson"|jq -r '.[].account|{avatar,acct,url}'`
 tn=`echo "$tjson"| jq -r length`
