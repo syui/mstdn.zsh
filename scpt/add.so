@@ -15,7 +15,10 @@ json_public=$j/timelines_public.json
 json_home=$j/timelines_home.json
 json_notification=$j/notifications.json
 json_avatar=$j/avatar.json
+json_avatar_timeline=$j/avatar_timeline.json
 json_media=$j/media.json
+json_timeline=$j/timeline.json
+
 select_command=`cat $json_user | jq -r .select_command`
 if [ "$select_command" = "null" ] || [ -z "$select_command" ];then
 	select_command=peco
