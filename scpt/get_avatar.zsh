@@ -1,8 +1,6 @@
 
 host_meta=".well-known//webfinger?resource"
 
-touch $json_avatar
-rm $json_avatar
 
 surl=$protocol://$host/$api_url/accounts/1/following
 #surl=$protocol://$host/$api_url/accounts/1/followers
@@ -26,7 +24,7 @@ do
 	else
 		echo ",{\"url\":\"$avatar\",\"static\":\"$avatar_static\",\"img\":\"$img\"}"
 	fi
-done >> $json_avatar
+done >! $json_avatar
 
 gurl=$protocol://$host/$api_url/accounts/1/followers
 gjson=`curl -sSL $gurl -H "Authorization: Bearer $access_token"`
@@ -53,11 +51,11 @@ do
 	fi
 done >> $json_avatar
 
-turl=$protocol://$host/$api_url/timelines/public
-json_time=$j/timelines_public.json
-tjson=`curl -sSL $turl -H "Authorization: Bearer $access_token"`
-tbody=`echo $tjson|jq -r '.[].account|{avatar,acct,url}'`
-tn=`echo $tjson| jq -r length`
+#turl="$protocol://$host/$api_url/timelines/public/?limit=40"
+#json_time=$j/timelines_public.json
+#tjson=`curl -sSL $turl -H "Authorization: Bearer $access_token"`
+#tbody=`echo $tjson|jq -r '.[].account|{avatar,acct,url}'`
+#tn=`echo $tjson| jq -r length`
 
 #for ((i=0;i<=$tn;i++))
 #do
