@@ -55,6 +55,9 @@ case $1 in
 	get_media)
 		. $s/get_media.zsh
 	;;
+	get_emoji)
+		. $s/get_emoji.zsh
+	;;
 	*)
 		echo args
 		echo see $readme

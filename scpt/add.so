@@ -17,6 +17,7 @@ json_notification=$j/notifications.json
 json_avatar=$j/avatar.json
 json_avatar_timeline=$j/avatar_timeline.json
 json_media=$j/media.json
+json_emoji=$j/emoji.json
 json_timeline=$j/timeline.json
 
 select_command=`cat $json_user | jq -r .select_command`
