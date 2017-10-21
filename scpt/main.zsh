@@ -58,6 +58,9 @@ case $1 in
 	get_emoji)
 		. $s/get_emoji.zsh
 	;;
+	reply|-r|r)
+		. $s/reply.zsh
+	;;
 	*)
 		echo args
 		echo see $readme
