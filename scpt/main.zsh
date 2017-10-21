@@ -61,6 +61,9 @@ case $1 in
 	reply|-r|r)
 		. $s/reply.zsh
 	;;
+	-ti|ti|timeline_imgcat)
+		. $s/timeline_imgcat.zsh
+	;;
 	*)
 		echo args
 		echo see $readme
