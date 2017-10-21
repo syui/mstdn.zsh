@@ -64,6 +64,9 @@ case $1 in
 	-ti|ti|timeline_imgcat)
 		. $s/timeline_imgcat.zsh
 	;;
+	post_media)
+		. $s/post_media.zsh
+	;;
 	*)
 		echo args
 		echo see $readme

@@ -23,6 +23,10 @@ img_icon=$j/icon
 if [ ! -d $img_icon ];then
 	mkdir -p $img_icon
 fi
+media_file=$j/media_file
+if [ ! -d $img_icon ];then
+	mkdir -p $media_file
+fi
 select_command=`cat $json_user | jq -r .select_command`
 if [ "$select_command" = "null" ] || [ -z "$select_command" ];then
 	select_command=peco
