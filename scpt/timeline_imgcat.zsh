@@ -18,6 +18,7 @@ do
 	content=`cat $json_timeline| jq -r ".[$i]|.content"`
 	acct=`cat $json_timeline| jq -r ".[$i]|.account.acct"|tr '@' '_'`
 	icon_f=$img_icon/$acct
+	check=0
 	if [ ! -f $icon_f.png ];then
 		curl -sL $icon_u -o $icon_f.png
 		if [ $? -eq 0 ];then
