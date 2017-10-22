@@ -27,6 +27,8 @@ media_file=$j/media_file
 if [ ! -d $img_icon ];then
 	mkdir -p $media_file
 fi
+json_upload_media=$j/media_upload.json
+
 select_command=`cat $json_user | jq -r .select_command`
 if [ "$select_command" = "null" ] || [ -z "$select_command" ];then
 	select_command=peco

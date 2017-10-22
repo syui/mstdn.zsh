@@ -10,7 +10,6 @@ curl -sSL $url -H "Authorization: Bearer $access_token"  | jq . >! $json_notific
 
 if [ `cat $json_notification| jq length` -eq 1 ];then
 	cat $json_notification| jq .
-	exit
 fi
 
 cat $json_notification| jq '.[]|[.type,.account.url,.status.uri,.status.content]'
