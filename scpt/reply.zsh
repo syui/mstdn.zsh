@@ -11,6 +11,8 @@ else
 	read k
 	echo "" >! $txt_message
 	vim $txt_message
+	echo "upload[Enter]"
+	read k
 	message=`cat $txt_message`
 fi
 message="status=$message"

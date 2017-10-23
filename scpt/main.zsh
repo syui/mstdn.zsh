@@ -53,6 +53,9 @@ case $1 in
 	get_avatar_timeline)
 		. $s/get_avatar_timeline.zsh
 	;;
+	get_avatar_reblog)
+		. $s/get_avatar_reblog.zsh
+	;;
 	get_media)
 		. $s/get_media.zsh
 	;;

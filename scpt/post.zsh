@@ -10,16 +10,16 @@ case $2 in
 	;;
 esac
 
-if [ "$select_command" = "null" ];then
-	select_command=peco
-	api_option=`cat $json_docs|jq -r '.[]|select(.POST)|.[]'|cut -d / -f 4-|$select_command --query statuses`
-else
-	api_option=`cat $json_docs|jq -r '.[]|select(.POST)|.[]'|cut -d / -f 4-|$select_command`
-fi
-
-url=$protocol://$host/$api_url/timelines/public
-curl -sSL $url -H "Authorization: Bearer $access_token" >! $j/timelines_public.json
-cat $j/timelines_public.json | jq '.[].content'
+#if [ "$select_command" = "null" ];then
+#	select_command=peco
+#	api_option=`cat $json_docs|jq -r '.[]|select(.POST)|.[]'|cut -d / -f 4-|$select_command --query statuses`
+#else
+#	api_option=`cat $json_docs|jq -r '.[]|select(.POST)|.[]'|cut -d / -f 4-|$select_command`
+#fi
+#
+#url=$protocol://$host/$api_url/timelines/public
+#curl -sSL $url -H "Authorization: Bearer $access_token" >! $j/timelines_public.json
+#cat $j/timelines_public.json | jq '.[].content'
 
 #if echo $api_option| grep ':id' > /dev/null 2>&1;then
 #	echo "id : "
@@ -27,13 +27,14 @@ cat $j/timelines_public.json | jq '.[].content'
 #	api_option=`echo $api_option | sed "s/:id/$id/"`
 #fi
 
+api_option=statuses
 url=$protocol://$host/$api_url/$api_option
 
 echo $url
 
 if [ "$api_option" = "statuses" ] && [ -n "$2" ];then
 	message="status=${@:2}"
-	curl -F $message -sS $url -H "Authorization: Bearer $access_token"
+	curl -F $message -sSL $url -H "Authorization: Bearer $access_token"
 	. $s/timeline_latest.zsh
 	exit
 fi
@@ -43,6 +44,8 @@ if [ "$api_option" = "statuses" ];then
 	read k
 	echo "" >! $txt_message
 	vim $txt_message
+	echo "upload[Enter]"
+	read k
 	message=`cat $txt_message`
 	message="status=$message"
 	curl -F $message -sS $url -H "Authorization: Bearer $access_token"
@@ -50,4 +53,3 @@ if [ "$api_option" = "statuses" ];then
 else
 	echo "test function ! -> statuses"
 fi
-

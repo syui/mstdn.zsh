@@ -1,9 +1,6 @@
 
 host_meta=".well-known//webfinger?resource"
 
-if [ -f $json_avatar_timeline ];then
-	rm $json_avatar_timeline
-fi
 
 case $2 in
 	public)
@@ -27,6 +24,9 @@ unset acct_tmp
 for ((i=0;i<=$tn;i++))
 do
 	acct=`cat $json_timeline|jq -r ".[$i].account|.acct"`
+	if [ $i -eq 0 ];then
+		echo "[" >! $json_avatar_timeline
+	fi
 	if echo "$acct_tmp"|grep -v "$acct" > /dev/null 2>&1;then
 		avatar=`cat $json_timeline|jq -r ".[$i].account|.avatar"`
 		avatar_static=`cat $json_timeline|jq -r ".[$i].account|.avatar_static"`
@@ -35,8 +35,8 @@ do
 			output=`curl -sSL -H "Accept: application/json" "$url/${host_meta}=acct:${acct}"|jq -r '.links|.[]|select(.type == "application/atom+xml")|.href'`
 			img=`curl -sL $output | awk -vRS="</logo>" '/<logo>/{gsub(/.*<logo>|\n+/,"");print;exit}'`
 			if [ $? -eq 0 ] && [ -n "$img" ];then
-				if [ $i -eq 0 ] ;then
-					echo "[{\"url\":\"$avatar\",\"static\":\"$avatar_static\",\"img\":\"$img\"}" >> $json_avatar_timeline
+				if [ `cat $json_avatar_timeline|wc -l` -eq 1 ] ;then
+					echo "{\"url\":\"$avatar\",\"static\":\"$avatar_static\",\"img\":\"$img\"}" >> $json_avatar_timeline
 				else
 					echo ",{\"url\":\"$avatar\",\"static\":\"$avatar_static\",\"img\":\"$img\"}" >> $json_avatar_timeline
 				fi
