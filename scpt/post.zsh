@@ -39,8 +39,11 @@ if [ "$api_option" = "statuses" ] && [ -n "$2" ];then
 fi
 
 if [ "$api_option" = "statuses" ];then
-	echo "send message :"
-	read message
+	echo "send message : vim[Enter]"
+	read k
+	echo "" >! $txt_message
+	vim $txt_message
+	message=`cat $txt_message`
 	message="status=$message"
 	curl -F $message -sS $url -H "Authorization: Bearer $access_token"
 	. $s/timeline_latest.zsh

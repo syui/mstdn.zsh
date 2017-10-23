@@ -37,5 +37,6 @@ do
 	if [ $check -eq 0 ];then
 		imgcat $icon_f.png
 	fi
+	echo $acct
 	echo $content
 done

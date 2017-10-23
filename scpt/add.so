@@ -21,6 +21,7 @@ json_emoji=$j/emoji.json
 json_follower=$j/follower.json
 json_timeline=$j/timeline.json
 txt_main=$j/main.txt
+txt_message=$j/message.txt
 img_icon=$j/icon
 if [ ! -d $img_icon ];then
 	mkdir -p $img_icon
