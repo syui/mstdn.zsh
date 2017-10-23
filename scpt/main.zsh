@@ -8,7 +8,8 @@ fi
 
 case $1 in
 	"")
-		. $s/post.zsh
+		cat ${0:a}|grep ". \$s"|grep -v add.so|grep -v main.zsh| cut -d / -f 2| cut -d . -f 1|peco >! $txt_main
+		. $s/main.zsh `cat $txt_main`
 	;;
 	select|-s|s)
 		. $s/select.zsh
@@ -66,6 +67,9 @@ case $1 in
 	;;
 	post_media)
 		. $s/post_media.zsh
+	;;
+	post_follow)
+		. $s/post_follow.zsh
 	;;
 	*)
 		echo args

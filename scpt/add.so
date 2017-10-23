@@ -18,7 +18,9 @@ json_avatar=$j/avatar.json
 json_avatar_timeline=$j/avatar_timeline.json
 json_media=$j/media.json
 json_emoji=$j/emoji.json
+json_follower=$j/follower.json
 json_timeline=$j/timeline.json
+txt_main=$j/main.txt
 img_icon=$j/icon
 if [ ! -d $img_icon ];then
 	mkdir -p $img_icon
