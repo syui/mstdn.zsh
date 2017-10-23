@@ -3,7 +3,8 @@ if ! which imgcat > /dev/null ;then
 	echo imgcat path
 	exit
 fi
-url="$protocol://$host/$api_url/timelines/public/?limit=40"
+
+url="$protocol://$host/$api_url/timelines/home/?limit=40"
 curl -sSL $url -H "Authorization: Bearer $access_token" >! $json_timeline
 tmp_json=`cat $json_timeline | jq -r -S ".[]|[{account,content}|{(.account.acct | tostring): .content},{(.id | tostring): .account.avatar_static}]"`
 
