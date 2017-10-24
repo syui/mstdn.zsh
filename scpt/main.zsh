@@ -65,6 +65,9 @@ case $1 in
 	reply|-r|r)
 		. $s/reply.zsh
 	;;
+	reply_notify)
+		. $s/reply_notify.zsh
+	;;
 	-ti|ti|timeline_imgcat)
 		. $s/timeline_imgcat.zsh
 	;;

@@ -1,5 +1,13 @@
 
-url="$protocol://$host/$api_url/timelines/public/?limit=40"
+case $2 in
+	public|-p|p)
+		url="$protocol://$host/$api_url/timelines/public/?limit=40"
+	;;
+	*)
+		url="$protocol://$host/$api_url/timelines/home/?limit=40"
+	;;
+esac
+
 curl -sSL $url -H "Authorization: Bearer $access_token" >! $json_timeline
 api_option=statuses
 url=$protocol://$host/$api_url/$api_option
