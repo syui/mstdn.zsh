@@ -11,10 +11,13 @@ if [ "$2" = "-test" ];then
 	id=22
 	api_option="accounts/search/?q=syui@mastodon.social"
 	url=$protocol://$host/$api_url/$api_option
-	curl -sS $url -H "Authorization: Bearer $access_token"
-	api_option=accounts/$id/unfollow
-	url=$protocol://$host/$api_url/$api_option
-	curl -sS -XPOST $url -H "Authorization: Bearer $access_token"
+	t=`curl -sS $url -H "Authorization: Bearer $access_token" | jq '.[].acct'`
+	if [ -n "$t" ];then
+		api_option=accounts/$id/unfollow
+		url=$protocol://$host/$api_url/$api_option
+		echo $url
+		curl -sS -XPOST $url -H "Authorization: Bearer $access_token"
+	fi
 	exit
 fi
 
