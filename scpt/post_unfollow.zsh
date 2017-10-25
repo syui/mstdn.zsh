@@ -33,7 +33,8 @@ for ((i=1;i<=$n;i++))
 do
 	acct=`echo "$tmp"|awk "NR==$i"`
 	id=`cat $json_following| jq -r ".[]|select(.acct == \"$acct\")|.id"`
-	if [ -n "$id" ];then
+	check_follow=`cat $json_follower| jq -r ".[]|select(.acct == \"$acct\")|.id"`
+	if [ -n "$id" ] && [ -z "$check_follow" ];then
 		api_option=accounts/$id/unfollow
 		url=$protocol://$host/$api_url/$api_option
 		echo "unfollow $acct -> $id"
