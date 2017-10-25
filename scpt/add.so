@@ -19,6 +19,7 @@ json_avatar_timeline=$j/avatar_timeline.json
 json_media=$j/media.json
 json_emoji=$j/emoji.json
 json_follower=$j/follower.json
+json_following=$j/following.json
 json_timeline=$j/timeline.json
 txt_main=$j/main.txt
 txt_message=$j/message.txt

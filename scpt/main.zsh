@@ -77,6 +77,9 @@ case $1 in
 	post_follow)
 		. $s/post_follow.zsh
 	;;
+	post_unfollow)
+		. $s/post_unfollow.zsh
+	;;
 	*)
 		echo args
 		echo see $readme
