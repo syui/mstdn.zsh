@@ -39,4 +39,8 @@ do
 	fi
 	echo $acct
 	echo $content
+	read k
+	if [ -n "$k" ];then
+		exit
+	fi
 done
