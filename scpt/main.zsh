@@ -80,6 +80,12 @@ case $1 in
 	post_unfollow)
 		. $s/post_unfollow.zsh
 	;;
+	get_avatar_following)
+		. $s/get_avatar_following.zsh
+	;;
+	get_avatar_follower)
+		. $s/get_avatar_follower.zsh
+	;;
 	*)
 		echo args
 		echo see $readme

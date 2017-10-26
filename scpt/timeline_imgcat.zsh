@@ -41,6 +41,8 @@ do
 	echo $content
 	read k
 	if [ -n "$k" ];then
+		exec zsh -l
 		exit
 	fi
 done
+exec zsh -l
