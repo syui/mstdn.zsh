@@ -18,18 +18,30 @@ fi
 
 for ((i=0;i<=$sn;i++))
 do
+	if [ $i -eq 0 ];then
+		echo "[" >! $json_avatar
+	fi
 	avatar=`echo $sjson|jq -r ".[$i]|.avatar"`
 	avatar_static=`echo $sjson|jq -r ".[$i]|.avatar_static"`
 	acct=`echo $sjson|jq -r ".[$i]|.acct"`
 	url=`echo $sjson|jq -r ".[$i]|.url"|cut -d / -f -3`
-	output=`curl -sSL -H "Accept: application/json" "$url/${host_meta}=acct:${acct}"|jq -r '.links|.[]|select(.type == "application/atom+xml")|.href'`
-	img=`curl -sL $output | awk -vRS="</logo>" '/<logo>/{gsub(/.*<logo>|\n+/,"");print;exit}'`
-	if [ $i -eq 0 ];then
-		echo "[{\"url\":\"$avatar\",\"static\":\"$avatar_static\",\"img\":\"$img\"}"
+	if ! curl -s $url|grep 502 > /dev/null 2>&1;then
+		curl -f -sSL -H "Accept: application/json" "$url/${host_meta}=acct:${acct}" > /dev/null 2>&1
+		if [ $? -eq 0 ];then
+			output=`curl -sSL -H "Accept: application/json" "$url/${host_meta}=acct:${acct}"|jq -r '.links|.[]|select(.type == "application/atom+xml")|.href'`
+			img=`curl -sL $output | awk -vRS="</logo>" '/<logo>/{gsub(/.*<logo>|\n+/,"");print;exit}'`
+			if [ `cat $json_avatar | wc -l` -eq 1 ];then
+				echo "{\"url\":\"$avatar\",\"static\":\"$avatar_static\",\"img\":\"$img\"}" >> $json_avatar
+			else
+				echo ",{\"url\":\"$avatar\",\"static\":\"$avatar_static\",\"img\":\"$img\"}" >> $json_avatar
+			fi
+		else
+			echo error "$url/${host_meta}=acct:${acct}"
+		fi
 	else
-		echo ",{\"url\":\"$avatar\",\"static\":\"$avatar_static\",\"img\":\"$img\"}"
+		echo $url error 502
 	fi
-done >! $json_avatar
+done
 echo "]" >> $json_avatar
 
 cat $json_avatar | jq .

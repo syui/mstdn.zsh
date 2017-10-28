@@ -86,6 +86,9 @@ case $1 in
 	get_avatar_follower)
 		. $s/get_avatar_follower.zsh
 	;;
+	delete_all)
+		. $s/delete_all.zsh
+	;;
 	*)
 		echo args
 		echo see $readme
