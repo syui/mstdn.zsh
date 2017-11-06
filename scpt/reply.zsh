@@ -13,6 +13,8 @@ api_option=statuses
 url=$protocol://$host/$api_url/$api_option
 reply_id=`cat $json_timeline|jq -c  '.[]|{id,content,url}'|peco|cut -d '"' -f 4`
 reply_user=`cat $json_timeline|jq -r -c  ".[]|select(.id == \"$reply_id\")|.account.acct"`
+echo $reply_id
+echo $reply_user
 if [ "$api_option" = "statuses" ] && [ -n "$2" ];then
 	message="status=${@:2}"
 else
