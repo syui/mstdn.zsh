@@ -18,7 +18,7 @@ if [ "$api_option" = "statuses" ] && [ -n "$2" ];then
 else
 	echo "send message : vim[Enter]"
 	read k
-	echo $reply_user >! $txt_message
+	echo " @${reply_user}" >! $txt_message
 	vim $txt_message
 	echo "upload[Enter]"
 	read k
