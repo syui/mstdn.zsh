@@ -50,12 +50,22 @@ client_id=`cat $json_client|jq -r .client_id`
 client_secret=`cat $json_client|jq -r .client_secret`
 scope="read write follow"
 
-echo "mastodon username (mail address) :"
-read username
-username=$username
-echo "mastodon password :"
-read password
-password=$password
+
+username=`cat json/user.json| jq 'has("username")'`
+password=`cat json/user.json| jq 'has("password")'`
+
+if [ "$username" = "true" ] && [ "$password" = "true" ];then
+	username=`cat $json_user|jq -r '.username'`
+	password=`cat $json_user|jq -r '.password'`
+
+else
+	echo "mastodon username (mail address) :"
+	read username
+	username=$username
+	echo "mastodon password :"
+	read password
+	password=$password
+fi
 
 curl -H "Content-Type: application/json" -X POST -Ss https://$host/oauth/token \
 	-d "{
