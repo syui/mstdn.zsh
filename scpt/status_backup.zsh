@@ -18,8 +18,8 @@ if [ -z "$2" ];then
 		fi
 	done >> ./index.html
 else
-	curl -sL $2| jq . |sed '$d' >! ./index.back
-	cat ./index.back >! ./index.html
+	curl -sL $2| jq .  >! ./index.back
+	cat ./index.back|sed '$d' >! ./index.html
 	if [ $? -eq 1 ];then
 		echo error curl
 		exit
