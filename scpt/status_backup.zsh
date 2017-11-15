@@ -32,8 +32,7 @@ else
 		if [ -n "$nu" ];then
 			cat $json_account_status| jq ".[$i]|{id,content}"
 		fi
-		if [ $i -eq $n ];then
-			echo "]"
-		fi
+
 	done >> ./index.html
+	echo "]" >> ./index.html
 fi
