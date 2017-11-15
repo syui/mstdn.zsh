@@ -26,10 +26,10 @@ else
 	fi
 	for ((i=0;i<=$n;i++))
 	do
-		echo ,
 		id=`cat $json_account_status| jq ".[$i].id"`
-		nu=`cat $tmp_json| jq ".[]|select(.id == \"$id\")"`
+		nu=`echo $tmp_json| jq ".[]|select(.id == $id)"`
 		if [ -n "$nu" ];then
+			echo ,
 			cat $json_account_status| jq ".[$i]|{id,content}"
 		fi
 
