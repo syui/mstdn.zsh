@@ -22,24 +22,10 @@ fi
 host=`cat $json_user|jq -r '.host'`
 app=`cat $json_user|jq -r '.app'`
 
-if [ ! -f $json_client ];then
-	curl -X POST -sS https://$host/api/v1/apps \
-	  -F "client_name=${app}" \
-	  -F "redirect_uris=urn:ietf:wg:oauth:2.0:oob" \
-	  -F "scopes=read write follow" >! $json_client
-else
-	echo "delete $json_client ? [y]"
-	read a
-	if [ "$a" = "y" ];then
-		rm $json_client
-		curl -X POST -sS https://$host/api/v1/apps \
-		  -F "client_name=${app}" \
-		  -F "redirect_uris=urn:ietf:wg:oauth:2.0:oob" \
-		  -F "scopes=read write follow" >! $json_client
-	else
-		exit
-	fi
-fi
+curl -X POST -sS https://$host/api/v1/apps \
+  -F "client_name=${app}" \
+  -F "redirect_uris=urn:ietf:wg:oauth:2.0:oob" \
+  -F "scopes=read write follow" >! $json_client
 
 if ! cat $json_client| jq . > /dev/null 2>&1;then
 	echo error $json_user
