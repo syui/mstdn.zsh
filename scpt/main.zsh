@@ -17,6 +17,9 @@ case $1 in
 	status|-status)
 		. $s/status.zsh
 	;;
+	status_backup|-status_backup)
+		. $s/status_backup.zsh
+	;;
 	delete|-d|d)
 		. $s/delete.zsh
 	;;
