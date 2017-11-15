@@ -16,8 +16,8 @@ client_id=`cat $json_client|jq -r .client_id`
 client_secret=`cat $json_client|jq -r .client_secret`
 scope="read write follow"
 
-username=`cat json/user.json| jq 'has("username")'`
-password=`cat json/user.json| jq 'has("password")'`
+username=`cat $json_user| jq 'has("username")'`
+password=`cat $json_user| jq 'has("password")'`
 
 if [ "$username" = "true" ] && [ "$password" = "true" ];then
 	username=`cat $json_user|jq -r '.username'`

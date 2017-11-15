@@ -33,18 +33,7 @@ if [ ! -d $img_icon ];then
 fi
 json_upload_media=$j/media_upload.json
 
-select_command=`cat $json_user | jq -r .select_command`
-if [ "$select_command" = "null" ] || [ -z "$select_command" ];then
-	select_command=peco
-fi
-
-#if [ ! -f $json_user ];then
-#	. $s/add_app.zsh
-#fi
-
-#if [ ! -f $json_account ];then
-#	. $s/account.zsh
-#fi
+select_command=peco
 
 if [ -f $json_user ];then
 	host=`cat $json_user| jq -r .host`
