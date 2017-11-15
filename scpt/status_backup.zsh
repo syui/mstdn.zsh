@@ -4,7 +4,7 @@ n=`cat $json_account_status | jq length`
 n=$(($n - 1))
 
 if [ -z "$2" ];then
-	echo "["
+	echo "[" >! ./index.html
 	for ((i=0;i<=$n;i++))
 	do
 		if [ $i -eq 0 ];then
@@ -16,9 +16,10 @@ if [ -z "$2" ];then
 		if [ $i -eq $n ];then
 			echo "]"
 		fi
-	done
+	done >> ./index.html
 else
 	tmp_json=`curl -sL $2| jq .|sed '$d'`
+	echo $tmp_json >! ./index.html
 	if [ $? -eq 1 ];then
 		echo error curl
 		exit
@@ -34,5 +35,5 @@ else
 		if [ $i -eq $n ];then
 			echo "]"
 		fi
-	done
+	done >> ./index.html
 fi
