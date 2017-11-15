@@ -53,9 +53,6 @@ else
 fi
 if [ -f $json_token ];then
 	access_token=`cat $json_token| jq -r .access_token`
-else
-	echo error $json_token
-	exit
 fi
 
 api_url=`cat $json_api| jq -r '.[]|.url'`
