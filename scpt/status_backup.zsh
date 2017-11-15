@@ -28,7 +28,7 @@ else
 	do
 		id=`cat $json_account_status| jq ".[$i].id"`
 		nu=`cat ./index.back| jq ".[]|select(.id == $id)"`
-		if [ -n "$nu" ];then
+		if [ -z "$nu" ];then
 			echo ,
 			cat $json_account_status| jq ".[$i]|{id,content}"
 		fi
