@@ -1,24 +1,4 @@
 
-if [ ! -f $json_user ];then
-	echo $json_user
-	cat $json_user_e
-	echo "host : "
-	read host
-	echo "app name : "
-	read app
-	echo "
-{
-	\"host\":\"$host\",
-	\"app\":\"$app\"
-}
-	" >! $json_user
-fi
-
-if ! cat $json_user| jq . > /dev/null 2>&1;then
-	echo error $json_user
-	exit
-fi
-
 host=`cat $json_user|jq -r '.host'`
 app=`cat $json_user|jq -r '.app'`
 
@@ -35,7 +15,6 @@ fi
 client_id=`cat $json_client|jq -r .client_id`
 client_secret=`cat $json_client|jq -r .client_secret`
 scope="read write follow"
-
 
 username=`cat json/user.json| jq 'has("username")'`
 password=`cat json/user.json| jq 'has("password")'`
