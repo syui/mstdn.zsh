@@ -47,8 +47,11 @@ case $1 in
 	test|--test)
 		. $s/test.zsh
 	;;
-	usertimeline|user|-u|u)
+	usertimeline)
 		. $s/timeline_user.zsh
+	;;
+	user|-u|u)
+		. $s/user.zsh
 	;;
 	get_avatar|g|-g)
 		. $s/get_avatar.zsh
