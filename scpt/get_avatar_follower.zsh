@@ -1,8 +1,8 @@
 if [ -f $json_account ];then
 	user_id=`cat $json_account| jq -r .id`
 else
-	. $s/account.zsh
-	user_id=`cat $json_account | jq -r .id`
+	echo mstdn.zsh account
+	exit
 fi
 host_meta=".well-known//webfinger?resource"
 
