@@ -8,10 +8,10 @@ if [ -z "$2" ];then
 	for ((i=0;i<=$n;i++))
 	do
 		if [ $i -eq 0 ];then
-			cat $json_account_status| jq ".[$i]|{id,content,created_at}"
+			cat $json_account_status| jq ".[$i]|{id,content,created_at,accont}"
 		else
 			echo ,
-			cat $json_account_status| jq ".[$i]|{id,content,created_at}"
+			cat $json_account_status| jq ".[$i]|{id,content,created_at,account}"
 		fi
 		if [ $i -eq $n ];then
 			echo "]"
@@ -30,7 +30,7 @@ else
 		nu=`cat ./index.back| jq ".[]|select(.id == $id)"`
 		if [ -z "$nu" ];then
 			echo ,
-			cat $json_account_status| jq ".[$i]|{id,content,created_at}"
+			cat $json_account_status| jq ".[$i]|{id,content,created_at,account}"
 		fi
 	done >> ./index.html
 	echo "]" >> ./index.html
