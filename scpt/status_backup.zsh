@@ -7,11 +7,16 @@ if [ -z "$2" ];then
 	echo "[" >! ./index.html
 	for ((i=0;i<=$n;i++))
 	do
+		tnull=`cat $json_account_status| jq ".[$i].reblog"`
 		if [ $i -eq 0 ];then
-			cat $json_account_status| jq ".[$i]|{id,content,created_at,reblog}"
+			if [ "$tnull" = "null" ];then
+				cat $json_account_status| jq ".[$i]|{id,content,created_at,reblog,account}"
+			fi
 		else
-			echo ,
-			cat $json_account_status| jq ".[$i]|{id,content,created_at,reblog}"
+			if [ "$tnull" = "null" ];then
+				echo ,
+				cat $json_account_status| jq ".[$i]|{id,content,created_at,reblog,account}"
+			fi
 		fi
 		if [ $i -eq $n ];then
 			echo "]"
@@ -29,8 +34,11 @@ else
 		id=`cat $json_account_status| jq ".[$i].id"`
 		nu=`cat ./index.back| jq ".[]|select(.id == $id)"`
 		if [ -z "$nu" ];then
-			echo ,
-			cat $json_account_status| jq ".[$i]|{id,content,created_at,reblog}"
+			tnull=`cat $json_account_status| jq ".[$i].reblog"`
+			if [ "$tnull" = "null" ];then
+				echo ,
+				cat $json_account_status| jq ".[$i]|{id,content,created_at,reblog,account}"
+			fi
 		fi
 	done >> ./index.html
 	echo "]" >> ./index.html
