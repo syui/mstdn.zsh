@@ -98,6 +98,9 @@ case $1 in
 	delete_all)
 		. $s/delete_all.zsh
 	;;
+	post_list_follow)
+		. $s/post_list_follow.zsh
+	;;
 	*)
 		echo args
 		echo see $readme

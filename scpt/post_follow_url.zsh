@@ -13,6 +13,7 @@ n=`cat $txt_follow| wc -l`
 for ((i=1;i<=$n;i++))
 do
 	uri=`cat $txt_follow|awk "NR==$i"`
+	echo $uri
 	uri="uri=$uri"
 	curl -sS -F $uri $url -H "Authorization: Bearer $access_token"
 done
