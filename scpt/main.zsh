@@ -101,6 +101,9 @@ case $1 in
 	post_list_follow)
 		. $s/post_list_follow.zsh
 	;;
+	delete_list)
+		. $s/delete_list.zsh
+	;;
 	*)
 		echo args
 		echo see $readme

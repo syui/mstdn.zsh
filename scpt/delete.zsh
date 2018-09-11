@@ -8,7 +8,7 @@ tmp_id=`cat $json_account_status | jq '.[]|{id,content}'|tr -d '{' | tr -d '}' |
 url=$protocol://$host/$api_url/$api_option/$tmp_id
 uri=`cat $json_account_status| jq -r ".[]|{id,content,uri}|select(.id == $tmp_id)"`
 echo $uri
-echo "delete [y]?"
+echo -e "\ndelete [y]?\n"
 read a
 case $a in
 	[yY])
