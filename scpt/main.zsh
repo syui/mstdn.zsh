@@ -83,6 +83,9 @@ case $1 in
 	post_follow)
 		. $s/post_follow.zsh
 	;;
+	post_follow_url)
+		. $s/post_follow_url.zsh
+	;;
 	post_unfollow)
 		. $s/post_unfollow.zsh
 	;;
