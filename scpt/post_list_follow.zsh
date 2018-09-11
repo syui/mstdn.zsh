@@ -15,6 +15,10 @@ body=`curl -sS $url -H "Authorization: Bearer $access_token"`
 list_id=`echo $body|jq -r ".[]|.id,.title"|tr '\n' ','|sed -e 's/,$//g'`
 list_id=`echo $list_id| peco|cut -d , -f 1`
 
+api_option=lists/$list_id/accounts
+url=$protocol://$host/$api_url/$api_option
+curl -sS $url -H "Authorization: Bearer $access_token"
+
 api_option=accounts/$user_id/following
 url=$protocol://$host/$api_url/$api_option
 if [ -f $json_follow ];then
@@ -55,8 +59,7 @@ esac
 
 for ((i=0;i<=$n;i++))
 do
-	uri=`cat $json_follow|jq -r ".[$i].id"`
-	uri="account_ids=$uri"
-	echo curl -sS -F $uri $url -H "Authorization: Bearer $access_token"
-	#curl -sS -F $uri $url -H "Authorization: Bearer $access_token"
+	id=`cat $json_follow|jq -r ".[$i].id"`
+	account_ids="account_ids=$id"
+	curl -sS -F $account_ids $url -H "Authorization: Bearer $access_token"
 done

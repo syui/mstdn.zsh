@@ -49,5 +49,6 @@ if [ -f $json_token ];then
 fi
 
 api_url=`cat $json_api| jq -r '.[]|.url'`
+api_url_new=api/v2
 protocol=`cat $json_api| jq -r '.[]|.protocol'`
 url=$protocol://$host/$api_url
