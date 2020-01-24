@@ -11,8 +11,8 @@ id=`od -vAn -tx1 -N8 </dev/urandom |tr -d '[:space:]' |sed -e 'a\'`
 turl=$protocol://$host/$api_url/status
 status="status=''"
 media_ids="media_ids="
-
 curl -sSL -F $status -F $media_ids ${turl} -H "Authorization: Bearer $access_token"
+
 
 #turl="$protocol://$host/$api_url/media"
 #echo $media_file

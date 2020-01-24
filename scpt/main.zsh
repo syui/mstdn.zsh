@@ -41,6 +41,9 @@ case $1 in
 	post|-p|p)
 		. $s/post.zsh
 	;;
+	img|-i|i)
+		. $s/post_img.zsh
+	;;
 	notify|-n|n)
 		. $s/notification.zsh
 	;;
