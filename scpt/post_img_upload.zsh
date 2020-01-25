@@ -48,9 +48,8 @@ git push -f origin master
 #curl -sSL ${url} -d "status=${STATUS}&media_ids[]=${img_id}" -H "Authorization: Bearer $access_token"
 
 echo $img_purl|cut -d '?' -f 1
-
+copy_img_url=`echo $img_purl|cut -d '?' -f 1|tr -d ' '`
 case $OSTYPE in
-	copy_img_url=`echo $img_purl|cut -d '?' -f 1|tr -d ' '`
 	darwin*)
 		echo ${copy_img_url}|pbcopy
 	;;
