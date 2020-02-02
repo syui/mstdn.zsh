@@ -30,32 +30,14 @@ git add .
 git commit -m "up"
 git push -f origin master
 
-## toot post
-#api_option=statuses
-#url=$protocol://$host/$api_url/$api_option
-#media_ids="media_ids=${img_id}"
-#echo $media_ids
-#
-#case $3 in
-#    p|-p|f|-f)
-#		STATUS="$4"
-#	;;
-#    *)
-#		STATUS="#media"
-#	;;
-#esac
-#
-#curl -sSL ${url} -d "status=${STATUS}&media_ids[]=${img_id}" -H "Authorization: Bearer $access_token"
+echo "$img_purl"|cut -d '?' -f 1
 
-echo $img_purl|cut -d '?' -f 1
-copy_img_url=`echo $img_purl|cut -d '?' -f 1|tr -d ' '`
 case $OSTYPE in
 	darwin*)
-		echo ${copy_img_url}|pbcopy
-	;;
-	linux*)
-		echo ${copy_img_url}|xclip -i -sel c
-	;;
+		echo "$img_purl"|cut -d '?' -f 1|pbcopy
+	 	;;
+  linux*)
+		echo "$img_purl"|cut -d '?' -f 1|xclip -i -sel c
+		;;
 esac
 
-exit

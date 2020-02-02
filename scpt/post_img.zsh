@@ -48,14 +48,14 @@ esac
 curl -sSL ${url} -d "status=${STATUS}&media_ids[]=${img_id}" -H "Authorization: Bearer $access_token"
 
 echo $img_purl|cut -d '?' -f 1
+copy_img_url=`echo $img_purl|cut -d '?' -f 1|tr -d ' '|tr -d '\n'`
 
 case $OSTYPE in
-	copy_img_url=`echo $img_purl|cut -d '?' -f 1|tr -d ' '`
 	darwin*)
-		echo ${copy_img_url}|pbcopy
+		echo "${copy_img_url}"|pbcopy
 	;;
 	linux*)
-		echo ${copy_img_url}|xclip -i -sel c
+		echo "${copy_img_url}"|xclip -i -sel c
 	;;
 esac
 
