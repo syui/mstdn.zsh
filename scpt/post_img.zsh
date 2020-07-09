@@ -16,10 +16,13 @@ img_purl=`echo "$img_push"|jq -r .preview_url`
 echo $img_push
 
 # git push	
-img_dir=`echo "$img_push"|jq -r .url|cut -d / -f 10-14`
-img_file=`echo "$img_push"|jq -r .url|cut -d / -f 16|cut -d '?' -f 1`
+img_dir=`echo "$img_push"|jq -r .url|cut -d / -f 10-|cut -d '?' -f 1`
+img_file=${img_dir##*/}
+img_dir=${img_dir%/*}
+img_dir=${img_dir%/*}
 echo $img_dir
 echo $img_file
+
 mkdir -p $git_dir/$img_dir/{original,small}
 echo "$git_dir/$img_dir/{original,small}/$img_file"
 cp -rf $2 $git_dir/$img_dir/original/$img_file
